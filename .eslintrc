@@ -1,0 +1,46 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "modules": true,
+      "spread" : true,
+      "jsx": true,
+      "globalReturn": true
+    },
+
+    "sourceType": "module"
+  },
+
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+
+  "plugins": [],
+
+  "globals": {
+    "__webpack_public_path__": true ,
+    "jQuery": true,
+    "describe": true,
+    "it": true,
+    "expect": true
+  },
+
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-unused-vars" : 0,
+    "no-undef" : 2,
+    "quotes": [0, "single"],
+    "no-console": 2,
+    "no-alert": 2,
+    "no-empty": 2,
+    "no-eval": 2,
+    "curly": 2,
+    "key-spacing": 2,
+    "newline-before-return": 2,
+    "no-func-assign": 2,
+    "object-property-newline": 2,
+    "indent": [2, "tab"]
+  }
+}

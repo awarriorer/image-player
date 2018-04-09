@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo1</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.con{
+			width: 300px;
+			height: 300px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	
+	<section class="con" id="con"></section>
+	
+	<script src="../../index.min.js"></script>
+
+	<script>
+		window.onload = function(){
+			console.log("window is ready1~");
+
+			console.log(ImagePlayer);
+
+			var imageArr = [];
+
+			for(let i = 0; i <= 35; i++){
+				imageArr.push("./images/demo1/1" + getNum(i) + '.jpg');
+			}
+
+			var IP = new ImagePlayer("#con", {
+				width: 300,
+				height: 300,
+				images: imageArr,
+				loop: true,
+				loopStart: 0,
+				loopEnd: 30,
+			});
+
+			console.log(IP);
+
+			function getNum(i){
+				let str = i + '';
+				
+				if(str.length < 2){
+					str = '0' + str;
+				}
+
+				return str;
+			}
+
+		}
+	</script>
+
+</body>
+</html>
