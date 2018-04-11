@@ -1,3 +1,6 @@
+import log from 'log';
+import {cfg, mergeCfg, setCfg, getCfg} from 'cfg';
+import util from 'util'
 
 export function initLoadImage(vm){
 	vm.prototype.loadImage = function(imgUrlArr) {
@@ -40,7 +43,6 @@ export function initLoadImage(vm){
 	};
 }
 
-
 function loadSingleImg(url){
 
 	return new Promise((resolve, reject) => {
@@ -56,5 +58,6 @@ function loadSingleImg(url){
 
 		Img.src = url;
 	});
-
 }
+
+export default loadSingleImg;

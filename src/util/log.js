@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 
-import {get} from 'cfg';
+import {getCfg as get} from 'cfg';
 
 // 修改有修浏览器不支持
 console.info  = console.info  || console.log;

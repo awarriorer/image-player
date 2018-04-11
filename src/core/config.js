@@ -5,11 +5,14 @@ let cfg = {
 	width: 0,
 	height: 0,
 	images: [],
+	coverImage: "",
 	loop: false,
 	loopStart: 0,
 	loopEnd: 0,
 	sequence: 20,//show image count in 1s
+	autoPlay: false,
 	logLevel: 4,
+	bgColor: "#FF0000",
 }
 
 function get(key){
@@ -28,7 +31,7 @@ function merge(options){
 
 export {
 	cfg,
-	get,
-	set,
-	merge,
+	get as getCfg,
+	set as setCfg,
+	merge as mergeCfg,
 }

@@ -15,11 +15,11 @@ export function initInterface(vm){
 	};
 
 	vm.prototype.play = function() {
-		
+		this._play();
 	};
 
 	vm.prototype.pause = function() {
-		
+		this._pause();
 	};
 
 	vm.prototype.destroy = function() {

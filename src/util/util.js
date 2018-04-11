@@ -34,8 +34,29 @@ function isPlainObject (obj){
   return _toString.call(obj) === '[object Object]'
 }
 
+function isFunction(functionToCheck) {
+
+	return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+}
+
+function doChain(filters, args, next) {
+    let i   = 0;
+
+    let doFilter = function() {
+        if (i < filters.length) {
+            filters[i++](args, doFilter);
+        } else {
+            next && next(args);
+        }
+    };
+
+    doFilter(args);
+}
+
 export default {
 	mergeData,
 	hasOwn,
-	isPlainObject
+	isPlainObject,
+	isFunction,
+	doChain,
 }

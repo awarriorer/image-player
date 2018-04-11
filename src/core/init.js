@@ -1,5 +1,5 @@
 import log from 'log';
-import {cfg, merge} from 'cfg';
+import {cfg, mergeCfg, setCfg, getCfg} from 'cfg';
 import util from 'util';
 import events from 'events';
 
@@ -7,15 +7,13 @@ export function init(vm){
 	vm.prototype.init = function(select, options) {
 		let self = this;
 		let con  = document.querySelector(select);
-
 		let conPostion = con.getBoundingClientRect();
 
 		cfg.width  = conPostion.width;
 		cfg.height = conPostion.height;
 
-
 		// merge config
-		merge(options);
+		mergeCfg(options);
 
 		// create canvas
 		let canvas = document.createElement("canvas");
@@ -25,7 +23,7 @@ export function init(vm){
 
 		let cxt = canvas.getContext("2d");
 
-		cxt.fillStyle="#FF0000";
+		cxt.fillStyle = cfg.bgColor;
 		cxt.fillRect(0, 0, cfg.width, cfg.height);
 
 		// rander dom
@@ -54,9 +52,21 @@ export function init(vm){
 				return;
 			}
 
+			// cover loopen
+			let loopEnd = getCfg("loopEnd");
+			if( !loopEnd || loopEnd == 0 ){
+				setCfg("loopEnd", imgArr.length)
+			}
+
 			self._imgArr = imgArr;
 			self._ready  = true;
+			self._initPlayer();
+			self._randerCover();
 			self._eventEmitter.emit("ready")
+
+			if(cfg.autoPlay){
+				self._play();
+			}
 			
 		});
 

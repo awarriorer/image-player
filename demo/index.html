@@ -9,8 +9,8 @@
 			padding: 0;
 		}
 		.con{
-			width: 300px;
-			height: 300px;
+			width: 375px;
+			height: 700px;
 			margin: 0 auto;
 		}
 	</style>
@@ -34,8 +34,6 @@
 			}
 
 			var IP = new ImagePlayer("#con", {
-				width: 300,
-				height: 300,
 				images: imageArr,
 				loop: true,
 				loopStart: 0,
@@ -43,6 +41,12 @@
 			});
 
 			console.log(IP);
+
+			IP.ready(function(){
+				console.log("image player is ready!");
+
+				IP.play();
+			});
 
 			function getNum(i){
 				let str = i + '';
