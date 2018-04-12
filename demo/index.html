@@ -18,35 +18,33 @@
 <body>
 	
 	<section class="con" id="con"></section>
+
+	<button id="play">播放(正序)</button>
+	<button id="playB">播放(倒序)</button>
+	<button id="pause">暂停</button>
+	<button id="replay">重置</button>
+	<button id="destroy">销毁</button>
 	
 	<script src="../../index.min.js"></script>
 
 	<script>
 		window.onload = function(){
+			let but_play = document.querySelector("#play");
+			let pause_play = document.querySelector("#pause");
+			let replay_play = document.querySelector("#replay");
+			let destroy_play = document.querySelector("#destroy");
+			let but_playB = document.querySelector("#playB");
+
+
 			console.log("window is ready1~");
 
 			console.log(ImagePlayer);
 
 			var imageArr = [];
 
-			for(let i = 0; i <= 35; i++){
-				imageArr.push("./images/demo1/1" + getNum(i) + '.jpg');
+			for(let i = 0; i <= 25; i++){
+				imageArr.push("./images/demo5/1" + getNum(i) + '.jpg');
 			}
-
-			var IP = new ImagePlayer("#con", {
-				images: imageArr,
-				loop: true,
-				loopStart: 0,
-				loopEnd: 30,
-			});
-
-			console.log(IP);
-
-			IP.ready(function(){
-				console.log("image player is ready!");
-
-				IP.play();
-			});
 
 			function getNum(i){
 				let str = i + '';
@@ -57,6 +55,40 @@
 
 				return str;
 			}
+
+			var IP = new ImagePlayer("#con", {
+				images: imageArr,
+				// loop: true,
+				// loopStart: 0,
+				// loopEnd: 30,
+			});
+
+			console.log(IP);
+
+			IP.ready(function(){
+				console.log("image player is ready!");
+
+				// IP.play();
+
+				but_play.onclick = function(){
+					IP.play();
+				};
+				pause_play.onclick = IP.pause;
+				replay_play.onclick = IP.reset;
+				destroy_play.onclick = IP.destroy;
+
+				but_playB.onclick = function(){
+					IP.play(-1);
+				}
+
+			});
+
+			IP.ready(function(){
+				IP.loopEnd(function(obj){
+					// console.log("循环结束~");
+					// console.log(obj);
+				});
+			});
 
 		}
 	</script>

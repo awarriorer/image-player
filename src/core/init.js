@@ -1,6 +1,8 @@
 import log from 'log';
 import {cfg, mergeCfg, setCfg, getCfg} from 'cfg';
 import util from 'util';
+import {registeredInterface, registeredInterfaceFilter} from './interface'
+
 import events from 'events';
 
 export function init(vm){
@@ -29,11 +31,15 @@ export function init(vm){
 		// rander dom
 		con.appendChild(canvas);
 
-		self._select = select;
-		self._canvas = canvas;
-		self._cxt    = cxt;
+		self.select = select;
+		self.canvas = canvas;
+		self.cxt    = cxt;
 		self._ready  = false;
+		self.destroyed = false;
 		self._eventEmitter = new events.EventEmitter();
+
+		registeredInterface(self);
+		registeredInterfaceFilter(self);
 
 		// load images
 		self.loadImage(cfg.images).then((imgArr, errArr)=>{
@@ -55,18 +61,20 @@ export function init(vm){
 			// cover loopen
 			let loopEnd = getCfg("loopEnd");
 			if( !loopEnd || loopEnd == 0 ){
-				setCfg("loopEnd", imgArr.length)
+				setCfg("loopEnd", imgArr.length - 1)
 			}
 
-			self._imgArr = imgArr;
+			self.imgArr = imgArr;
 			self._ready  = true;
 			self._initPlayer();
 			self._randerCover();
 			self._eventEmitter.emit("ready")
 
 			if(cfg.autoPlay){
-				self._play();
+				self._play(cfg.autoPlay);
 			}
+
+			log.info(cfg);
 			
 		});
 

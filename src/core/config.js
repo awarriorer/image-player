@@ -6,11 +6,12 @@ let cfg = {
 	height: 0,
 	images: [],
 	coverImage: "",
-	loop: false,
+	loop: true,
+	loopDirection: 2, // 1:Forward -1:Reverse, 2: toggle
 	loopStart: 0,
 	loopEnd: 0,
 	sequence: 20,//show image count in 1s
-	autoPlay: false,
+	autoPlay: true,
 	logLevel: 4,
 	bgColor: "#FF0000",
 }

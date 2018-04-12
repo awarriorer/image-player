@@ -39,6 +39,11 @@ function isFunction(functionToCheck) {
 	return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 }
 
+function isNumber(str) {
+
+	return !isNaN(str);
+}
+
 function doChain(filters, args, next) {
     let i   = 0;
 
@@ -53,10 +58,31 @@ function doChain(filters, args, next) {
     doFilter(args);
 }
 
+function getRequestAnimationFrame() {
+    return window.requestAnimationFrame
+		|| window.mozRequestAnimationFrame
+		|| window.webkitRequestAnimationFrame
+		|| window.msRequestAnimationFrame
+		|| window.oRequestAnimationFrame
+		|| function(callback) {setTimeout(callback, 1000 / 60)};
+}
+
+function getCancelAnimationFrame () {
+    return window.cancelAnimationFrame 
+		|| window.mozCancelAnimationFrame
+		|| window.webkitCancelAnimationFrame
+		|| window.msCancelAnimationFrame
+		|| window.oCancelAnimationFrame
+		|| function(id) {clearTimeout(id)};
+}
+
 export default {
 	mergeData,
 	hasOwn,
 	isPlainObject,
 	isFunction,
+	isNumber,
 	doChain,
+	getRequestAnimationFrame,
+	getCancelAnimationFrame
 }
