@@ -7,11 +7,11 @@ export function initInterface(vm){
 	vm.prototype.ready = function(callback) {
 		let self = this;
 
-		if(self._ready){
-			callback(self);
+		if(self.isReady){
+			util.isFunction(callback) && callback(self);
 		}else{
-			self._eventEmitter.on("ready", function(){
-				callback(self);
+			self._eventEmitter.on('ready', function(){
+				util.isFunction(callback) && callback(self);
 			});
 		}
 	};
@@ -21,7 +21,7 @@ export function registeredInterface(vm){
 	let self = vm;
 
 	self.play = function(direction = 1) {
-		log.info("播放~");
+		log.info('播放~');
 		self._play(direction);
 	};
 
@@ -36,8 +36,8 @@ export function registeredInterface(vm){
 	self.loopEnd = function(fun) {
 		let self = this;
 
-		self._eventEmitter.on("_loopEnd", function(obj){
-			fun && fun(obj);
+		self._eventEmitter.on('_loopEnd', function(obj){
+			util.isFunction(fun) && fun(obj);
 		}); 
 	};
 
@@ -64,8 +64,7 @@ export function registeredInterface(vm){
 
 export function registeredInterfaceFilter(vm){
 	let self = vm;
-	let funArr = ["play", "pause", "reset", "loopEnd", "registeredFilter", "removeFilter", "destroy"];
-
+	let funArr = ['play', 'pause', 'reset', 'loopEnd', 'registeredFilter', 'removeFilter', 'destroy'];
 
 	for(let i = 0; i < funArr.length; i++){
 		registeredEventFilter(self, funArr[i]);
@@ -80,7 +79,7 @@ function registeredEventFilter(self, name){
 
 		if(destroyed){
 			
-			log.warn("player is destroyed");
+			log.warn('player is destroyed');
 
 			return;
 		}

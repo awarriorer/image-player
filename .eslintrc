@@ -31,7 +31,7 @@
   "rules": {
     "no-unused-vars" : 0,
     "no-undef" : 2,
-    "quotes": [0, "single"],
+    "quotes": [2, "single"],
     "no-console": 2,
     "no-alert": 2,
     "no-empty": 2,

@@ -5,15 +5,15 @@ let cfg = {
 	width: 0,
 	height: 0,
 	images: [],
-	coverImage: "",
-	loop: true,
-	loopDirection: 2, // 1:Forward -1:Reverse, 2: toggle
+	coverImage: '',
+	loop: false,
+	loopDirection: 1, // 1:Forward -1:Reverse, 2: toggle
 	loopStart: 0,
 	loopEnd: 0,
 	sequence: 20,//show image count in 1s
-	autoPlay: true,
+	autoPlay: false,
 	logLevel: 4,
-	bgColor: "#FF0000",
+	bgColor: '#FF0000',
 }
 
 function get(key){

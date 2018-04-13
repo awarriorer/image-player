@@ -4,12 +4,16 @@ var path = require('path');
 var webpack = require('webpack');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
 
-// var spinner = ora('building for production...')
-// spinner.start()
+var isDebug = function () {
+    return process.env.NODE_ENV != "produce";
+};
+
+var spinner = ora('building for production...')
+spinner.start()
 
 var config = {
 	entry: {
-		index: './src/core/index.js'
+		"image-player": './src/core/index.js'
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
@@ -19,13 +23,6 @@ var config = {
         libraryTarget: 'umd',
 	},
 	plugins: [
-		//把指定文件夹下的文件复制到指定的目录
-	    new TransferWebpackPlugin([
-	        {
-	            from: './demo',
-	            to: './demo'
-	        }
-	    ], path.resolve(__dirname,"./")),
 	],
 	watch: true,
 	module: {
@@ -34,9 +31,9 @@ var config = {
 				test: /\.(js)$/,
 				exclude: /(node_modules)|log\.js/,
 				use: [
-					// {
-					// 	loader: 'eslint-loader',
-					// },
+					{
+						loader: 'eslint-loader',
+					},
 					{
 						loader: 'babel-loader?cacheDirectory'
 					}
@@ -45,7 +42,7 @@ var config = {
 		]
 	},
 
-	devtool: "inline-source-map",
+    devtool: isDebug ? "inline-source-map" : "eval",
 
 	resolve: {
 		//modules,搜索路径
@@ -84,10 +81,9 @@ var config = {
 
 };
 
-module.exports = config;
+// module.exports = config;
 
-/*
-	webpack(config, (err, stats) => {
+webpack(config, (err, stats) => {
     spinner.stop()
 
     if (err) {
@@ -109,5 +105,4 @@ module.exports = config;
 
     console.log(chalk.cyan('  Build complete.\n'))
 
-  })
-*/
+})

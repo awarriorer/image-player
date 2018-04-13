@@ -32,7 +32,7 @@ export function initPlayer(vm){
 		let endIndex   = len;
 
 		if(!pauseing){
-			log.info("is playing~");
+			log.info('is playing~');
 
 			return;
 		}
@@ -52,7 +52,7 @@ export function initPlayer(vm){
 
 		direction = direction > 0 ? 1 : -1;
 		
-		if(direction < 0){
+		if(direction < 0 && startIndex == 0){
 			[startIndex, endIndex] = [endIndex, startIndex]
 		}
 		
@@ -152,7 +152,7 @@ export function initPlayer(vm){
 
 		}
 
-		self._eventEmitter.emit("_loopEnd", {
+		self._eventEmitter.emit('_loopEnd', {
 			loopCount
 		})
 
@@ -194,7 +194,7 @@ export function initPlayer(vm){
 		if(next && util.isFunction(next)){
 			self._randerFilters.push(next);
 		}else{
-			log.warm("filter need a function.");
+			log.warm('filter need a function.');
 		}
 	};
 
