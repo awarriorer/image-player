@@ -5,7 +5,7 @@
 
 也适用于：不是专业的动画/效攻城狮，但是却接到了动画需求，同时，设计同学肯为你出一系列动画素材。
 
-# 开始(Start)
+### 开始(Start)
     
     let imagePlayer = new ImagePlayer(selector, options);
 
@@ -25,7 +25,7 @@
 |bgColor|color|#fff  |canvas的背景颜色|
 |logLevel|Number|4  |日志级别(0:无任何日志;1:输出错误日志;2:输出错误和警告日志;3:输出错误，警告和程序运行日志;4:输出开发日志在内的所有日志，开发此库的时候用)|
 
-# 方法(Api)
+### 方法(Api)
 |方法    |描述          |
 |:-------|:------------|
 |ready(cb) |实例准备好时调用|
@@ -39,7 +39,8 @@
 |removeFilter |删除过滤器，恢复默认显示|
 |destroy |销毁实例|
 
-# 效果(Effect)
+### 效果(Effect)
 ![effect](./demo/effect.gif)
-# 例子(demo)
+
+### 例子(demo)
 获取项目后，进入项目，执行 npm run demo-server或者双击demo-server.sh，执行成功后，访问http://localhost:3865/demo/index.html 即可
