@@ -20,7 +20,7 @@ export function initPlayer(vm){
 	vm.prototype._initPlayer = function() {
 		let self = this;
 
-		self._registeredRanderFilter(centerFiler);
+		self._registeredDefaultRanderFilter();
 	};
 
 
@@ -198,10 +198,18 @@ export function initPlayer(vm){
 		}
 	};
 
+	vm.prototype._registeredDefaultRanderFilter = function() {
+		let self = this;
+		
+		self._registeredRanderFilter(centerFiler);
+	};
+
 	vm.prototype._removeAllRanderFilter = function() {
 		let self = this;
 		
 		self._randerFilters = [];
+
+		self._registeredDefaultRanderFilter();
 
 	};
 }

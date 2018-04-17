@@ -11,6 +11,18 @@ var isDebug = function () {
 var spinner = ora('building for production...')
 spinner.start()
 
+
+let demoArr = [
+    //把指定文件夹下的文件复制到指定的目录
+    new TransferWebpackPlugin([
+        {
+            from: './demo',
+            to: './demo'
+        }
+    ], path.resolve(__dirname,"./")),
+]
+
+
 var config = {
 	entry: {
 		"image-player": './src/core/index.js'
@@ -22,8 +34,7 @@ var config = {
         library: 'ImagePlayer',
         libraryTarget: 'umd',
 	},
-	plugins: [
-	],
+	plugins: isDebug ? demoArr : [],
 	watch: true,
 	module: {
 		rules: [
@@ -31,9 +42,9 @@ var config = {
 				test: /\.(js)$/,
 				exclude: /(node_modules)|log\.js/,
 				use: [
-					{
-						loader: 'eslint-loader',
-					},
+					// {
+					// 	loader: 'eslint-loader',
+					// },
 					{
 						loader: 'babel-loader?cacheDirectory'
 					}
@@ -81,28 +92,31 @@ var config = {
 
 };
 
-// module.exports = config;
+module.exports = config;
 
-webpack(config, (err, stats) => {
+/*
+    webpack(config, (err, stats) => {
     spinner.stop()
 
     if (err) {
-    	throw err
+        throw err
     }
 
     process.stdout.write(stats.toString({
-    	colors: true,
-    	modules: false,
-    	children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
-    	chunks: false,
-    	chunkModules: false
+        colors: true,
+        modules: false,
+        children: false, // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
+        chunks: false,
+        chunkModules: false
     }) + '\n\n')
 
     if (stats.hasErrors()) {
-    	console.log(chalk.red('  Build failed with errors.\n'))
-    	process.exit(1)
+        console.log(chalk.red('  Build failed with errors.\n'))
+        process.exit(1)
     }
 
     console.log(chalk.cyan('  Build complete.\n'))
 
 })
+
+*/

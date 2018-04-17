@@ -18,7 +18,7 @@
 </head>
 <body>
 	
-	<h3>默认播放</h3>
+	<h3>正向循环部分</h3>
 	<h4>
 		<a href="index.html">默认配置</a>
 		<a href="demo1.html">默认循环</a>
@@ -40,7 +40,7 @@
 		
 		// 构建图片数组
 		for(let i = 0; i <= 35; i++){
-			imageArr.push("./images/demo1/1" + getNum(i) + '.jpg');
+			imageArr.push("./images/index/1" + getNum(i) + '.jpg');
 		}
 
 		function getNum(i){
@@ -55,6 +55,9 @@
 
 		let options = {
 			images: imageArr,
+			loopStart: 24,
+			autoPlay: true,
+			loop: true,
 		}
 
 	</script>

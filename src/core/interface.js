@@ -1,5 +1,7 @@
 import log from 'log';
 import util from 'util';
+import {setCfg} from 'cfg';
+
 
 let destroyed = false;
 
@@ -33,6 +35,14 @@ export function registeredInterface(vm){
 		self._reset();
 	};
 
+	self.openLoop = function() {
+		setCfg("loop", true);
+	};
+
+	self.closeLoop = function() {
+		setCfg("loop", false);
+	};
+
 	self.loopEnd = function(fun) {
 		let self = this;
 
@@ -41,8 +51,8 @@ export function registeredInterface(vm){
 		}); 
 	};
 
-	self.registeredFilter = function() {
-		self._registeredRanderFilter();
+	self.registeredFilter = function(next) {
+		self._registeredRanderFilter(next);
 	};
 
 	self.removeFilter = function() {

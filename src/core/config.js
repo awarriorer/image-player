@@ -13,7 +13,7 @@ let cfg = {
 	sequence: 20,//show image count in 1s
 	autoPlay: false,
 	logLevel: 4,
-	bgColor: '#FF0000',
+	bgColor: '#fff',
 }
 
 function get(key){

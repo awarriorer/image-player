@@ -4,8 +4,9 @@
   "description": "play images like video",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV='produce' node webpack.config.js",
-    "build-test": "node webpack.config.js"
+    "build": "bash release.sh",
+    "build-test": "bash build.sh",
+    "demo-server": "bash demo-server.sh"
   },
   "repository": {
     "type": "git",
