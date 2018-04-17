@@ -40,6 +40,6 @@
 |destroy |销毁实例|
 
 # 效果(Effect)
-!(./demo/effect.gif)
+![effect](./demo/effect.gif)
 # 例子(demo)
 获取项目后，进入项目，执行 npm run demo-server或者双击demo-server.sh，执行成功后，访问http://localhost:3865/demo/index.html即可
